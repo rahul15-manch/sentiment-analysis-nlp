@@ -4,3 +4,7 @@ numpy
 Scikit-learn
 seaborn
 matplotlib
+bs4
+pytest
+tensorflow
+keras
