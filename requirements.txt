@@ -8,3 +8,8 @@ bs4
 pytest
 tensorflow
 keras
+xgboost
+gensim
+streamlit 
+fastapi
+pydantic
