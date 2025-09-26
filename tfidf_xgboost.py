@@ -6,27 +6,41 @@ from xgboost import XGBClassifier
 from utils import clean_text
 
 
-def prepare_tfidf_data(texts, labels, max_features=20000, test_size=0.2, random_state=42):
+def prepare_tfidf_data(
+    texts, 
+    labels, 
+    max_features=20000, 
+    test_size=0.2, 
+    random_state=42, 
+    ngram_range=(1, 2)  # default: unigrams + bigrams
+):
     """
     Convert raw text into TF-IDF features for training XGBoost.
     """
     # Clean the texts
     texts_cleaned = [clean_text(t) for t in texts]
 
-    # Split
+    # Train-test split
     X_train, X_test, y_train, y_test = train_test_split(
-        texts_cleaned, labels, test_size=test_size, random_state=random_state
+        texts_cleaned, labels, test_size=test_size, random_state=random_state, stratify=labels
     )
 
-    # TF-IDF vectorization
-    vectorizer = TfidfVectorizer(max_features=max_features, ngram_range=(1, 2))
+    # TF-IDF vectorization with n-grams
+    vectorizer = TfidfVectorizer(max_features=max_features, ngram_range=ngram_range)
     X_train_tfidf = vectorizer.fit_transform(X_train)
     X_test_tfidf = vectorizer.transform(X_test)
 
     return X_train_tfidf, X_test_tfidf, y_train, y_test, vectorizer
 
 
-def train_xgboost(X_train, y_train, X_test, y_test, vectorizer, model_path="models/tfidf_xgb.pkl"):
+def train_xgboost(
+    X_train, 
+    y_train, 
+    X_test, 
+    y_test, 
+    vectorizer, 
+    model_path="models/tfidf_xgb_v2.pkl"
+):
     """
     Train XGBoost classifier with TF-IDF features.
     """
@@ -41,10 +55,10 @@ def train_xgboost(X_train, y_train, X_test, y_test, vectorizer, model_path="mode
         random_state=42,
     )
 
-    # Train
+    # Train the model
     model.fit(X_train, y_train)
 
-    # Predict
+    # Predict on test set
     y_pred = model.predict(X_test)
 
     # Evaluate
