@@ -210,12 +210,6 @@ pytest tests/
 ## 👤 Author
 
 **Rahul Manchanda**  
-## 👤 Author
-
-**Rahul Manchanda**  
-## 👤 Author
-
-**Rahul Manchanda**  
 [![Email](https://img.shields.io/badge/Email-rahulmanchanda015%40gmail.com-red?style=flat&logo=gmail&logoColor=white)](mailto:rahulmanchanda015@gmail.com)  
 [![GitHub](https://img.shields.io/badge/GitHub-rahul15--manch-black?style=flat&logo=github&logoColor=white)](https://github.com/rahul15-manch)  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-rahul--manchanda-blue?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rahul-manchanda-3959b120a/)
